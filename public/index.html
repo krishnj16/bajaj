@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRM Full Stack Challenge</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header class="glass-panel">
+            <h1>Graph Hierarchy Analyzer</h1>
+            <p>Enter an array of node strings (e.g. <code>["A->B", "A->C"]</code>) to process hierarchical relationships.</p>
+            <p class="subtitle">API Endpoint: <code>POST /bfhl</code></p>
+        </header>
+
+        <main>
+            <section class="input-section glass-panel">
+                <form id="dataForm">
+                    <div class="input-group">
+                        <label for="dataInput">Node Array (JSON format)</label>
+                        <textarea id="dataInput" rows="5" placeholder='["A->B", "A->C", "B->D", "C->E", "hello", "A->A"]'>["A->B", "A->C", "B->D", "C->E", "E->F", "X->Y", "Y->Z", "Z->X", "P->Q", "Q->R", "G->H", "G->H", "G->I", "hello", "1->2", "A->"]</textarea>
+                    </div>
+                    <button type="submit" id="submitBtn">
+                        <span>Analyze Graph</span>
+                        <div class="loader" id="btnLoader" style="display: none;"></div>
+                    </button>
+                </form>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </section>
+
+            <section id="resultsSection" class="results-section" style="display: none;">
+                
+                <div class="summary-cards">
+                    <div class="card glass-panel stat-card">
+                        <h3>Total Trees</h3>
+                        <p class="stat-value" id="statTotalTrees">0</p>
+                    </div>
+                    <div class="card glass-panel stat-card">
+                        <h3>Total Cycles</h3>
+                        <p class="stat-value" id="statTotalCycles">0</p>
+                    </div>
+                    <div class="card glass-panel stat-card">
+                        <h3>Largest Root</h3>
+                        <p class="stat-value" id="statLargestRoot">-</p>
+                    </div>
+                </div>
+
+                <div class="details-grid">
+                    <div class="card glass-panel hierarchies-card">
+                        <h2>Hierarchies</h2>
+                        <div id="hierarchiesContainer" class="hierarchies-container">
+                        </div>
+                    </div>
+
+                    <div class="side-info">
+                        <div class="card glass-panel list-card validation-card">
+                            <h2>Validations</h2>
+                            <div class="list-group">
+                                <h4>Invalid Entries <span class="badge" id="invalidCount">0</span></h4>
+                                <ul id="invalidList"></ul>
+                            </div>
+                            <div class="list-group mt-4">
+                                <h4>Duplicate Edges <span class="badge" id="duplicateCount">0</span></h4>
+                                <ul id="duplicateList"></ul>
+                            </div>
+                        </div>
+
+                        <div class="card glass-panel identity-card">
+                            <h2>Identity Details</h2>
+                            <div class="identity-item">
+                                <span class="label">User ID:</span>
+                                <span class="value" id="resUserId">-</span>
+                            </div>
+                            <div class="identity-item">
+                                <span class="label">Email:</span>
+                                <span class="value" id="resEmail">-</span>
+                            </div>
+                            <div class="identity-item">
+                                <span class="label">Roll Number:</span>
+                                <span class="value" id="resRoll">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
